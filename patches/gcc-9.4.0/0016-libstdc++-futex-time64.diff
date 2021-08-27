@@ -1,8 +1,6 @@
-diff --git a/libstdc++-v3/src/c++11/futex.cc b/libstdc++-v3/src/c++11/futex.cc
-index 3ea32f752bb..dcea96fea5b 100644
---- a/libstdc++-v3/src/c++11/futex.cc
-+++ b/libstdc++-v3/src/c++11/futex.cc
-@@ -61,7 +61,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
+--- gcc-9.2.0/libstdc++-v3/src/c++11/futex.cc.orig	2020-01-20 14:55:05.507548334 -0500
++++ gcc-9.2.0/libstdc++-v3/src/c++11/futex.cc	2020-01-20 14:56:52.458268068 -0500
+@@ -61,7 +61,15 @@
  	struct timeval tv;
  	gettimeofday (&tv, NULL);
  	// Convert the absolute timeout value to a relative timeout

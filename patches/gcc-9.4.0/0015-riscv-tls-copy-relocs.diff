@@ -1,8 +1,8 @@
 diff --git a/gcc/config/riscv/riscv.c b/gcc/config/riscv/riscv.c
-index b3297a38114..bec1756f6db 100644
+index 677728e77ed..444d01e87ec 100644
 --- a/gcc/config/riscv/riscv.c
 +++ b/gcc/config/riscv/riscv.c
-@@ -1257,9 +1257,11 @@ riscv_legitimize_tls_address (rtx loc)
+@@ -1209,9 +1209,11 @@ riscv_legitimize_tls_address (rtx loc)
    rtx dest, tp, tmp;
    enum tls_model model = SYMBOL_REF_TLS_MODEL (loc);
  

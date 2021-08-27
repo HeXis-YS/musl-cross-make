@@ -88,7 +88,7 @@ index bb19d0dcd41..bb2a2324eb0 100644
     %{mnewlib:ecrtn.o%s;:crtn.o%s} \
     " CRTOFFLOADEND
 diff --git a/gcc/gcc.c b/gcc/gcc.c
-index eb1610ba8b0..cad98bcfcc5 100644
+index eb1610ba8b0..87560afb03c 100644
 --- a/gcc/gcc.c
 +++ b/gcc/gcc.c
 @@ -900,7 +900,7 @@ proper position among the other output files.  */

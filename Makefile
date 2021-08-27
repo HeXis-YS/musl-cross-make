@@ -2,15 +2,15 @@ SOURCES = sources
 
 CONFIG_SUB_REV = 888c8e3d5f7b
 BINUTILS_VER = 2.33.1
-GCC_VER = 9.2.0
-MUSL_VER = 1.2.1
+GCC_VER = 9.4.0
+MUSL_VER = 1.2.2
 GMP_VER = 6.1.2
 MPC_VER = 1.1.0
 MPFR_VER = 4.0.2
 LINUX_VER = headers-4.19.88
 
-GNU_SITE = https://ftp.gnu.org/pub/gnu
-
+GNU_SITE = https://ftpmirror.gnu.org/gnu
+GCC_SITE = $(GNU_SITE)/gcc
 BINUTILS_SITE = $(GNU_SITE)/binutils
 GMP_SITE = $(GNU_SITE)/gmp
 MPC_SITE = $(GNU_SITE)/mpc

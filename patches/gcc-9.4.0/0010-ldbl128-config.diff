@@ -1,8 +1,8 @@
 diff --git a/gcc/configure b/gcc/configure
-index a065ba23728..7f16f1c2c30 100755
+index 3dcf7752b7f..78aaa36dce6 100755
 --- a/gcc/configure
 +++ b/gcc/configure
-@@ -29353,6 +29353,15 @@ if test "${with_long_double_128+set}" = set; then :
+@@ -29356,6 +29356,15 @@ if test "${with_long_double_128+set}" = set; then :
    withval=$with_long_double_128; gcc_cv_target_ldbl128="$with_long_double_128"
  else
  
@@ -18,7 +18,7 @@ index a065ba23728..7f16f1c2c30 100755
  if test $glibc_version_major -gt 2 \
    || ( test $glibc_version_major -eq 2 && test $glibc_version_minor -ge 4 ); then :
    gcc_cv_target_ldbl128=yes
-@@ -29364,6 +29373,10 @@ else
+@@ -29367,6 +29376,10 @@ else
        && gcc_cv_target_ldbl128=yes
  
  fi
@@ -30,10 +30,10 @@ index a065ba23728..7f16f1c2c30 100755
  
      ;;
 diff --git a/gcc/configure.ac b/gcc/configure.ac
-index 3a7251102ef..4a7780c5adc 100644
+index 51f520c1508..a6498239698 100644
 --- a/gcc/configure.ac
 +++ b/gcc/configure.ac
-@@ -6016,13 +6016,25 @@ case "$target" in
+@@ -6020,13 +6020,25 @@ case "$target" in
      AC_ARG_WITH(long-double-128,
        [AS_HELP_STRING([--with-long-double-128],
  		      [use 128-bit long double by default])],

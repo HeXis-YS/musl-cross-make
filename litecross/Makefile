@@ -84,12 +84,8 @@ FULL_GCC_CONFIG = --enable-languages=c,c++,fortran \
 	--disable-libmudflap --disable-libsanitizer \
 	--disable-gnu-indirect-function \
 	--disable-libmpx \
-	--enable-libstdcxx-time=rt \
-	--enable-deterministic-archives \
-	--enable-libstdcxx-time \
-	--enable-libquadmath --enable-libquadmath-support \
-	--disable-decimal-float \
-        $(OVERRIDE)
+	--enable-initfini-array \
+	--enable-libstdcxx-time=rt
 
 FULL_MUSL_CONFIG = $(MUSL_CONFIG) \
 	--prefix= --host=$(TARGET)

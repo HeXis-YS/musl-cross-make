@@ -38,7 +38,7 @@ index 9310138c32c..4c0cc0a3013 100644
  # following variables have to be "routed through" this Makefile, for expansion
  # of the several (Makefile) variables used therein.
 diff --git a/libgomp/testsuite/lib/libgomp.exp b/libgomp/testsuite/lib/libgomp.exp
-index 04302074732..82d3c2ec582 100644
+index ea3da2cb383..e7df78916ea 100644
 --- a/libgomp/testsuite/lib/libgomp.exp
 +++ b/libgomp/testsuite/lib/libgomp.exp
 @@ -86,6 +86,7 @@ proc libgomp_init { args } {
