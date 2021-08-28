@@ -1,7 +1,7 @@
-diff -ru binutils-2.32-orig/ld/scripttempl/pep.sc binutils-2.32/ld/scripttempl/pep.sc
---- binutils-2.32-orig/ld/scripttempl/pep.sc	2019-01-19 17:01:33.000000000 +0100
-+++ binutils-2.32/ld/scripttempl/pep.sc	2019-06-02 12:26:01.212943752 +0200
-@@ -124,10 +124,8 @@
+diff -ur a/ld/scripttempl/pep.sc b/ld/scripttempl/pep.sc
+--- a/ld/scripttempl/pep.sc	2021-07-08 06:37:20.000000000 -0500
++++ b/ld/scripttempl/pep.sc	2021-08-28 13:05:42.673576567 -0500
+@@ -127,10 +127,8 @@
         LONG (0); LONG (0);
       }
      ${CONSTRUCTING+
@@ -14,10 +14,10 @@ diff -ru binutils-2.32-orig/ld/scripttempl/pep.sc binutils-2.32/ld/scripttempl/p
         LONG (-1); LONG (-1);
         KEEP (*(.dtors));
         KEEP (*(.dtor));
-diff -ru binutils-2.32-orig/ld/scripttempl/pe.sc binutils-2.32/ld/scripttempl/pe.sc
---- binutils-2.32-orig/ld/scripttempl/pe.sc	2019-01-19 17:01:33.000000000 +0100
-+++ binutils-2.32/ld/scripttempl/pe.sc	2019-06-02 12:27:03.104562647 +0200
-@@ -123,10 +123,8 @@
+diff -ur a/ld/scripttempl/pe.sc b/ld/scripttempl/pe.sc
+--- a/ld/scripttempl/pe.sc	2021-07-08 06:37:20.000000000 -0500
++++ b/ld/scripttempl/pe.sc	2021-08-28 13:05:42.673576567 -0500
+@@ -126,10 +126,8 @@
         LONG (0);
       }
      ${CONSTRUCTING+
