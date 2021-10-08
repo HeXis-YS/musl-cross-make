@@ -18,7 +18,7 @@ MPFR_SITE = $(GNU_SITE)/mpfr
 
 GCC_SNAP = https://sourceware.org/pub/gcc/snapshots
 
-ISL_SITE = http://isl.gforge.inria.fr/
+ISL_SITE = https://downloads.sourceforge.net/project/libisl/
 
 MUSL_SITE = https://musl.libc.org/releases
 MUSL_REPO = git://git.musl-libc.org/musl
