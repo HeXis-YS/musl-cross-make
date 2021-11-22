@@ -15,13 +15,6 @@ if ! test -z ${MCMTOOLS}; then
     test -d "${MCMT}/host/bin" || fail=1;
     test -d "${MCMT}/musl/bin" || fail=1;
     test $fail -eq 1 && printf "Using 'MCMTOOLS=%s' is not valid.\n" "${MCMTOOLS}" && exit 1;
-    PARALLEL="${MCMT}/sys/bin/parallel";
-    GREP="${MCMT}/sys/bin/grep";
-    MAKE="${MCMT}/sys/bin/make";
-else
-    PARALLEL="$(command -v parallel 2>/dev/null)";
-    GREP="$(command -v grep 2>/dev/null)";
-    MAKE="$(command -v make 2>/dev/null)";
 fi
 
 export MCMTOOLS="${MCMT}";
@@ -34,5 +27,8 @@ export MCMTOOLS="${MCMT}";
 #
 JOBS=6;
 
-"${MAKE}" extract_all;
-"${GREP}" -v ^# "${LIST}" | "${PARALLEL}" --eta --bar --progress --plain -j${JOBS} -a - "${HERE}/build";
+if ! test -z ${MCMTOOLS}; then
+    export PATH="${MCMT}/sys/bin";
+fi
+make extract_all;
+grep -v ^# "${LIST}" | parallel --eta --bar --progress --plain -j${JOBS} -a - "${HERE}/build";
