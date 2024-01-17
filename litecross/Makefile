@@ -71,7 +71,7 @@ FULL_BINUTILS_CONFIG = \
 	--with-sysroot=$(SYSROOT) \
 	--enable-deterministic-archives
 
-FULL_GCC_CONFIG = --enable-languages=c,c++,fortran \
+FULL_GCC_CONFIG = --enable-languages=c,c++ \
 	$(GCC_CONFIG_FOR_TARGET) \
 	$(COMMON_CONFIG) $(GCC_CONFIG) $(TOOLCHAIN_CONFIG) \
 	--disable-bootstrap \
