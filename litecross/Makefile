@@ -75,22 +75,25 @@ FULL_GCC_CONFIG = --enable-languages=c,c++ \
 	$(GCC_CONFIG_FOR_TARGET) \
 	$(COMMON_CONFIG) $(GCC_CONFIG) $(TOOLCHAIN_CONFIG) \
 	--disable-bootstrap \
-	--disable-assembly \
 	--disable-werror \
-	--target=$(TARGET) --prefix= \
-	--libdir=/lib --disable-multilib \
+	--disable-multilib \
+	--target=$(TARGET) \
+	--prefix= \
+	--libdir=/lib \
 	--with-sysroot=$(SYSROOT) \
 	--enable-tls \
-	--disable-libmudflap --disable-libsanitizer \
-	--disable-gnu-indirect-function \
+	--enable-__cxa_atexit \
+	--disable-libmudflap \
+	--disable-libgomp \
+	--disable-libssp \
+	--disable-libquadmath \
+	--disable-libquadmath-support \
+	--disable-libsanitizer \
 	--disable-libmpx \
+	--disable-libstdcxx-verbose \
+	--disable-gnu-indirect-function \
 	--enable-initfini-array \
-	--enable-libstdcxx-time=rt \
-	--enable-deterministic-archives \
-	--enable-libstdcxx-time \
-	--enable-libquadmath --enable-libquadmath-support \
-	--disable-decimal-float \
-        $(OVERRIDE)
+	$(OVERRIDE)
 
 FULL_MUSL_CONFIG = $(MUSL_CONFIG) \
 	--prefix= --host=$(TARGET)
@@ -227,6 +230,8 @@ obj_binutils/.lc_built: | obj_binutils/.lc_configured
 	touch $@
 
 obj_gcc/.lc_configured: | obj_gcc src_gcc
+	sed -i '/void/{N; /std::terminate () throw()/ {s/void/__attribute__ ((used)) &/}}' src_gcc/libstdc++-v3/libsupc++/eh_terminate.cc
+	sed -i 's/x$gcc_no_link/UNDEFINED/g' src_gcc/libstdc++-v3/configure src_gcc/libssp/configure src_gcc/libquadmath/configure
 	cd obj_gcc && ../src_gcc/configure $(FULL_GCC_CONFIG)
 	touch $@
 
