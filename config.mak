@@ -9,8 +9,11 @@ endif
 
 COMMON_CONFIG += --disable-gprofng CFLAGS="${FLAG}" CXXFLAGS="${FLAG}" FFLAGS="${FLAG}" LDFLAGS="-s ${STAT}"
 
-# BINUTILS_CONFIG += --enable-gold=yes
-GCC_CONFIG += --enable-default-pie --enable-static-pie --disable-cet
+BINUTILS_CONFIG += --enable-ld=yes --enable-gold=default
+
+GCC_CONFIG += --enable-gold
+GCC_CONFIG += --disable-cet
+# GCC_CONFIG += --enable-default-pie --enable-static-pie
 GCC_CONFIG += --disable-shared --enable-static
 # GCC_CONFIG += --enable-shared --enable-static --disable-symvers
 

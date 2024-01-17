@@ -69,7 +69,11 @@ FULL_BINUTILS_CONFIG = \
 	--target=$(TARGET) --prefix= \
 	--libdir=/lib --disable-multilib \
 	--with-sysroot=$(SYSROOT) \
-	--enable-deterministic-archives
+	--enable-threads \
+	--enable-plugins \
+	--enable-deterministic-archives \
+	--disable-nls \
+	--without-zstd
 
 FULL_GCC_CONFIG = --enable-languages=c,c++ \
 	$(GCC_CONFIG_FOR_TARGET) \
@@ -91,6 +95,12 @@ FULL_GCC_CONFIG = --enable-languages=c,c++ \
 	--disable-libsanitizer \
 	--disable-libmpx \
 	--disable-libstdcxx-verbose \
+	--enable-lto \
+	--without-zstd \
+	--enable-threads=posix \
+	--disable-libstdcxx-pch \
+	--enable-plugin \
+	--disable-nls \
 	--disable-gnu-indirect-function \
 	--enable-initfini-array \
 	$(OVERRIDE)
@@ -123,7 +133,9 @@ FULL_GCC_CONFIG += --with-build-sysroot=$(CURDIR)/obj_sysroot \
 	STRIP_FOR_TARGET=$(PWD)/obj_binutils/binutils/strip-new \
 	--build=$(BUILD) --host=$(BUILD) \
 	# end
-FULL_MUSL_CONFIG += CC="$(XGCC)" LIBCC="../obj_gcc/$(TARGET)/libgcc/libgcc.a" 
+FULL_MUSL_CONFIG += CC="$(XGCC)" LIBCC="../obj_gcc/$(TARGET)/libgcc/libgcc.a" \
+	--enable-optimize=yes \
+	--disable-gcc-wrapper
 MUSL_VARS = AR=../obj_binutils/binutils/ar RANLIB=../obj_binutils/binutils/ranlib
 obj_musl/.lc_configured: | obj_gcc/gcc/.lc_built
 obj_musl/.lc_built: | obj_gcc/$(TARGET)/libgcc/libgcc.a
