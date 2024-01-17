@@ -221,43 +221,51 @@ obj_sysroot/lib32: | obj_sysroot
 obj_sysroot/lib64: | obj_sysroot
 	ln -sf lib $@
 
+# Configure binutils
 obj_binutils/.lc_configured: | obj_binutils src_binutils
 	cd obj_binutils && ../src_binutils/configure $(FULL_BINUTILS_CONFIG)
 	touch $@
 
+# Build binutils
 obj_binutils/.lc_built: | obj_binutils/.lc_configured
 	cd obj_binutils && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" all
 	touch $@
 
+# Configure gcc
 obj_gcc/.lc_configured: | obj_gcc src_gcc
-	sed -i '/void/{N; /std::terminate () throw()/ {s/void/__attribute__ ((used)) &/}}' src_gcc/libstdc++-v3/libsupc++/eh_terminate.cc
-	sed -i 's/x$gcc_no_link/UNDEFINED/g' src_gcc/libstdc++-v3/configure src_gcc/libssp/configure src_gcc/libquadmath/configure
 	cd obj_gcc && ../src_gcc/configure $(FULL_GCC_CONFIG)
 	touch $@
 
+# Build gcc compilers
 obj_gcc/gcc/.lc_built: | obj_gcc/.lc_configured
 	cd obj_gcc && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)" all-gcc
 	touch $@
 
+# Configure musl
 obj_musl/.lc_configured: | obj_musl src_musl
 	cd obj_musl && ../src_musl/configure $(FULL_MUSL_CONFIG)
 	touch $@
 
+# Install musl headers
 obj_sysroot/.lc_headers: | obj_musl/.lc_configured obj_sysroot
 	cd obj_musl && $(MAKE) DESTDIR=$(CURDIR)/obj_sysroot install-headers
 	touch $@
 
+# Build libgcc
 obj_gcc/$(TARGET)/libgcc/libgcc.a: | obj_sysroot/.lc_headers
 	cd obj_gcc && $(MAKE) MAKE="$(MAKE) enable_shared=no $(LIBTOOL_ARG)" all-target-libgcc
 
+# Build musl libc
 obj_musl/.lc_built: | obj_musl/.lc_configured
 	cd obj_musl && $(MAKE) $(MUSL_VARS)
 	touch $@
 
+# Install musl libc
 obj_sysroot/.lc_libs: | obj_musl/.lc_built
 	cd obj_musl && $(MAKE) $(MUSL_VARS) DESTDIR=$(CURDIR)/obj_sysroot install
 	touch $@
 
+# Build rest of gcc
 obj_gcc/.lc_built: | obj_gcc/.lc_configured obj_gcc/gcc/.lc_built
 	cd obj_gcc && $(MAKE) MAKE="$(MAKE) $(LIBTOOL_ARG)"
 	touch $@
